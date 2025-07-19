@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/movie-search-app/static/css/main.61575a0d.css",
+    "main.js": "/movie-search-app/static/js/main.22637290.js",
+    "static/media/bg-1.jpg": "/movie-search-app/static/media/bg-1.81d89fd018c81a6149fc.jpg",
+    "index.html": "/movie-search-app/index.html",
+    "main.61575a0d.css.map": "/movie-search-app/static/css/main.61575a0d.css.map",
+    "main.22637290.js.map": "/movie-search-app/static/js/main.22637290.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61575a0d.css",
+    "static/js/main.22637290.js"
+  ]
+}
