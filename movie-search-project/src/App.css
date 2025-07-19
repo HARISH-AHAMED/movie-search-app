@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+#root {
+  height: 100%;
+}
+
+body {
+  background-image: url('D:/movie-search-app/movie-search-project/src/assets/movie-search/assets/bg-1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust for overlay */
+  z-index: -1;
+}
+
+.App {
+  text-align: center;
+  padding: 40px;
+  min-height: 100vh;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.App.moved {
+  padding-top: 100px; /* Move the whole app content upwards after search */
+}
+
+h1 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 0.5s ease; /* Transition the 'top' property */
+  /* color: #DC143C; */
+  text-decoration: underline #DC143C;
+}
+
+h1.moved {
+  top: 10%; /* Move the header to the top after search */
+}
+
+.search-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05); /* Transparent white background */
+  border-radius: 25px; /* Rounded corners */
+  padding: 5px 25px;
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: top 0.5s ease;
+}
+
+.search-bar.moved {
+  top: 20%; /* Move the search bar up after search */
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 230px; /* Adjust input width */
+  border: none;
+  border-radius: 20px 0 0 20px; /* Rounded left corners */
+  font-size: 16px;
+  color: white;
+  background: transparent;
+  outline: none; /* Remove default outline */
+}
+
+.search-bar:focus-within {
+  box-shadow: 0 0 5px 2px #B01030;
+  border-radius: 25px; /* Optional: matches your UI curve */
+}
+
+
+.search-bar button {
+  padding: 10px;
+  border: none;
+  background-color: transparent; /* Accent color */
+  color: #DC143C;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 0 20px 20px 0; /* Rounded right corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: transparent; /* Slightly darker when hovered */
+}
+
+.search-bar button i {
+  font-size: 18px;
+}
+
+
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 70px;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.movie-item {
+  background: #1e1e1e;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: 150px;
+  height: 250px; /* Adjust the height */
+  display: flex;
+  flex-direction: column; /* Stack image and text vertically */
+  justify-content: space-between; /* Space between image and title */
+  overflow: hidden; /* Ensures no overflow outside the movie item */
+}
+
+.movie-item:hover {
+  transform: scale(1.05);
+}
+
+.movie-item img {
+  width: 100%;
+  height: 180px; /* Restrict the height of the image */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio */
+  border-radius: 5px;
+}
+
+.movie-item p {
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px; /* Adds some spacing between image and text */
+}
+
+.movie-details strong{
+  display: block;
+  text-decoration: underline;
+}
+
+.movie-details .imdb{
+  color: #F5C518;
+}
+
+.movie-details {
+  margin-top: 70px;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 30px;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  text-align: centre;
+}
+
+.movie-details .poster {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.movie-info p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.movie-details button{
+  margin-top: 20px;
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #DC143C;
+}
+
+.spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  font-size: 18px;
+  color: #555;
+}
+
+
+.error-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 16px;
+  background-color: transparent;
+  /* border: 1px solid red; */
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  z-index: 10001; /* higher than spinner if needed */
+  max-width: 90%;
+  text-align: center;
+}
