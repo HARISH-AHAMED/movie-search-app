@@ -49,7 +49,7 @@ function App() {
 
   return (
     <div className={`App ${searchClicked ? 'moved' : ''}`}>
-      <h1 className={`${searchClicked ? 'moved' : ''}`}>Explorer</h1>
+      <h1 className={`${searchClicked ? 'moved' : ''}`}>Movie Explorer</h1>
 
       {/* Search Bar */}
       <div className={`search-bar ${searchClicked ? 'moved' : ''}`}>
