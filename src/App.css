@@ -80,7 +80,7 @@ h1.moved {
 }
 
 .search-bar.moved {
-  top: 20%; /* Move the search bar up after search */
+  top: 10%; /* Move the search bar up after search */
 }
 
 .search-bar input {
