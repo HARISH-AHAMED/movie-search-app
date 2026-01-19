@@ -1,245 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Poppins', sans-serif;
-  color: white;
-}
-
-#root {
-  height: 100%;
-}
-
 body {
-  background-image: url('D:/movie-search-app/movie-search-project/src/assets/movie-search/assets/bg-1.jpg');
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0f0f0f; /* Fallback */
+  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('D:/movie-search-app/movie-search-project/src/assets/movie-search/assets/bg-1.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  position: relative;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Adjust for overlay */
-  z-index: -1;
+  color: #fff;
+  overflow-x: hidden;
 }
 
 .App {
-  text-align: center;
-  padding: 40px;
   min-height: 100vh;
-  background: transparent;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  transition: all 0.5s ease;
+  padding: 20px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.App.moved {
-  padding-top: 100px; /* Move the whole app content upwards after search */
-}
-
+/* Header Styling */
 h1 {
   position: absolute;
   top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: top 0.5s ease; /* Transition the 'top' property */
-  /* color: #DC143C; */
-  text-decoration: underline #DC143C;
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h1.moved {
-  top: 10%; /* Move the header to the top after search */
+  top: 5%;
+  font-size: 1.8rem;
 }
 
+/* Search Bar Enhanced */
 .search-bar {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 52%;
+  width: 100%;
+  max-width: 500px;
   display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.05); /* Transparent white background */
-  border-radius: 25px; /* Rounded corners */
-  padding: 5px 25px;
-  backdrop-filter: blur(10px); /* Apply blur effect */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: top 0.5s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 8px 20px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .search-bar.moved {
-  top: 20%; /* Move the search bar up after search */
+  top: 12%;
+  max-width: 400px;
 }
 
 .search-bar input {
-  padding: 10px;
-  width: 230px; /* Adjust input width */
-  border: none;
-  border-radius: 20px 0 0 20px; /* Rounded left corners */
-  font-size: 16px;
-  color: white;
+  flex: 1;
   background: transparent;
-  outline: none; /* Remove default outline */
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
 }
-
-.search-bar:focus-within {
-  box-shadow: 0 0 5px 2px #B01030;
-  border-radius: 25px; /* Optional: matches your UI curve */
-}
-
 
 .search-bar button {
-  padding: 10px;
+  background: transparent;
   border: none;
-  background-color: transparent; /* Accent color */
-  color: #DC143C;
-  font-size: 16px;
+  color: #ff416c;
+  font-size: 1.2rem;
   cursor: pointer;
-  border-radius: 0 20px 20px 0; /* Rounded right corners */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s;
+  transition: transform 0.2s ease;
 }
 
 .search-bar button:hover {
-  background-color: transparent; /* Slightly darker when hovered */
+  transform: scale(1.2);
 }
 
-.search-bar button i {
-  font-size: 18px;
-}
-
-
+/* Movie Grid */
 .movie-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 70px;
-  gap: 20px;
-  font-size: 14px;
+  margin-top: 180px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+  animation: fadeIn 0.8s ease forwards;
 }
 
 .movie-item {
-  background: #1e1e1e;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  width: 150px;
-  height: 250px; /* Adjust the height */
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
-  flex-direction: column; /* Stack image and text vertically */
-  justify-content: space-between; /* Space between image and title */
-  overflow: hidden; /* Ensures no overflow outside the movie item */
+  flex-direction: column;
 }
 
 .movie-item:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ff416c;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
 
 .movie-item img {
   width: 100%;
-  height: 180px; /* Restrict the height of the image */
-  object-fit: cover; /* Ensures the image maintains its aspect ratio */
-  border-radius: 5px;
+  aspect-ratio: 2/3;
+  object-fit: cover;
 }
 
 .movie-item p {
-  font-size: 12px;
-  color: white;
-  font-weight: bold;
+  padding: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-align: center;
-  margin-top: 10px; /* Adds some spacing between image and text */
 }
 
-.movie-details strong{
-  display: block;
-  text-decoration: underline;
-}
-
-.movie-details .imdb{
-  color: #F5C518;
-}
-
+/* Movie Details (Modal-like) */
 .movie-details {
-  margin-top: 70px;
-  max-width: 600px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border-radius: 15px;
-  padding: 30px;
-  color: white;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  text-align: centre;
+  margin-top: 160px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 900px;
+  width: 90%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideUp 0.5s ease;
 }
 
 .movie-details .poster {
-  width: 100%;
-  max-height: 400px;
-  object-fit: contain;
+  width: 300px;
   border-radius: 10px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
 }
 
-.movie-info p {
-  margin: 10px 0;
-  font-size: 16px;
-  line-height: 1.5;
+.movie-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #ff416c;
 }
 
-.movie-details button{
-  margin-top: 20px;
-  text-decoration: underline;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #DC143C;
+.imdb-badge {
+  background: #f5c518;
+  color: #000;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8rem;
 }
 
-.spinner-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading Spinner */
 .spinner {
-  font-size: 18px;
-  color: #555;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-top: 5px solid #ff416c;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-top: 200px;
 }
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-.error-message {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: red;
-  font-size: 16px;
-  background-color: transparent;
-  /* border: 1px solid red; */
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  z-index: 10001; /* higher than spinner if needed */
-  max-width: 90%;
-  text-align: center;
+/* Responsive */
+@media (max-width: 768px) {
+  .movie-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .movie-details .poster {
+    width: 200px;
+  }
 }
